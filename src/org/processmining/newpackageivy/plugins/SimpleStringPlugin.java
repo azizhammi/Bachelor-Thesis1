@@ -6,7 +6,7 @@ import org.processmining.framework.plugin.annotations.Plugin;
 import org.processmining.framework.plugin.annotations.PluginVariant;
 
 @Plugin(
-        name = "Simple String from Aziz 1.0",
+        name = "Simple String from Aziz salut0",
         parameterLabels = {},
         returnLabels = { "Output" },
         returnTypes = { String.class }

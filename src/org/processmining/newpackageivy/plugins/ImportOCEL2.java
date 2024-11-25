@@ -51,9 +51,9 @@ import java.io.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
-@Plugin(name = "OCEL 2.0 JSON", parameterLabels = { "Filename" }, returnLabels = {
+@Plugin(name = "OCEL 2.0 JSON from aziz", parameterLabels = { "Filename" }, returnLabels = {
 "Object-Centric Event Log" }, returnTypes = { OCELEventLog.class })
-@UIImportPlugin(description = "OCEL 2.0 JSON", extensions = { "jsonocel", "json" })
+@UIImportPlugin(description = "OCEL 2.0 JSON from aziz", extensions = { "jsonocel", "json" })
 
 public class ImportOCEL2 extends AbstractImportPlugin{
 
@@ -178,6 +178,7 @@ public class ImportOCEL2 extends AbstractImportPlugin{
 
 	        // Add event to event log
 	        ocelLog.events.put(eventId, event);
+	        System.out.println(ocelLog.events);
 	    }
 	}
 
