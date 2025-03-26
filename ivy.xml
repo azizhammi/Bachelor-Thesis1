@@ -35,10 +35,10 @@
         
         
         <!-- https://mvnrepository.com/artifact/org.graphstream/gs-core -->
-<dependency org="org.graphstream" name="gs-core" rev="2.0"/>
+        <dependency org="org.graphstream" name="gs-core" rev="2.0"/>
 
         <!-- https://mvnrepository.com/artifact/org.neo4j.driver/neo4j-java-driver -->
-<dependency org="org.neo4j.driver" name="neo4j-java-driver" rev="1.7.6"/>
+        <dependency org="org.neo4j.driver" name="neo4j-java-driver" rev="1.7.6"/>
 
 
 
