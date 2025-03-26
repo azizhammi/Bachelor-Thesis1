@@ -105,6 +105,11 @@ public class VisualizationPanel extends JPanel {
         ControlPanel.add(BottomPanel, BorderLayout.SOUTH);
        
         this.add(ControlPanel, BorderLayout.SOUTH);
+
+	//Empty Right Panel
+        JPanel RightPanel = new JPanel();
+        RightPanel.setPreferredSize(new Dimension(50, 0));
+        this.add(RightPanel, BorderLayout.EAST);
         
         //Reset Button
         JButton resetButton = new JButton("Reset");
