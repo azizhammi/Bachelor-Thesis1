@@ -1,2 +1,1 @@
-# NewPackageIvy
-Bachelor Thesis
+# Bachelor Thesis
