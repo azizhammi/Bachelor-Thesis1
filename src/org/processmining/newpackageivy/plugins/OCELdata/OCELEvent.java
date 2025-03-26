@@ -23,6 +23,8 @@ public class OCELEvent {
 	    this.attributes = new HashMap<String, Object>();
 	}
 	
+	
+	
 	public void register() {
 		
 	    for (String relatedObject : relatedObjectsIdentifiers.keySet()) { 
@@ -48,4 +50,24 @@ public class OCELEvent {
 	    return newEvent;
 	}
 	
+	
+	// test
+	// New constructor with id, activity, and timestamp
+	public OCELEvent(OCELEventLog eventLog, String id, String activity, Date timestamp) {
+	    this(eventLog);  // Call the existing constructor with eventLog
+	    this.id = id;
+	    this.activity = activity;
+	    this.timestamp = timestamp;
+	    this.relatedObjectsIdentifiers = new HashMap<String, String>();
+	    this.relatedObjects = new HashMap<OCELObject, String>();
+	    this.attributes = new HashMap<String, Object>();
+	}
+
+	public void addRelatedObject(OCELObject object, String role) {
+	    if (this.relatedObjects == null) {
+	        this.relatedObjects = new HashMap<OCELObject, String>();  // Ensure relatedObjects is initialized
+	    }
+	    this.relatedObjects.put(object, role);
+	}
+
 }

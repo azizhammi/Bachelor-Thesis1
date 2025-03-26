@@ -2,10 +2,18 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" output="tests/bin-test" path="tests/src-test"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=NewPackageIvy&amp;ivyXmlPath=ivy.xml&amp;confs=*&amp;ivySettingsPath=ivysettings.xml&amp;loadSettingsOnDemand=false&amp;ivyUserDir=&amp;propertyFiles="/>
-	<classpathentry kind="lib" path="C:/Users/azizh/Dropbox/PC/Downloads/jackson-databind-2.18.1-javadoc.jar"/>
 	<classpathentry kind="lib" path="C:/Users/azizh/Dropbox/PC/Downloads/org.json-20120521.jar"/>
-	<classpathentry kind="lib" path="C:/Users/azizh/Dropbox/PC/Downloads/neo4j-java-driver-4.4.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/azizh/Dropbox/PC/Downloads/jgrapht-core-1.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/azizh/Dropbox/PC/Downloads/gs-ui-swing-2.0 (1).jar"/>
+	<classpathentry kind="lib" path="C:/Users/azizh/Dropbox/PC/Downloads/neo4j-community-5.25.1-windows/neo4j-community-5.25.1/lib/reactive-streams-1.0.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/azizh/Dropbox/PC/Downloads/jackson-core-2.8.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/azizh/Dropbox/PC/Downloads/jackson-annotations-2.8.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/azizh/Dropbox/PC/Downloads/jackson-databind-2.8.11.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -26,14 +26,27 @@
     	
     	
     	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-        <dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.0.1"/>
         
         <!-- https://mvnrepository.com/artifact/org.json/json -->
         <dependency org="org.json" name="json" rev="20140107"/>
         
-        <!-- https://mvnrepository.com/artifact/org.neo4j.driver/neo4j-java-driver -->
-        <dependency org="org.neo4j.driver" name="neo4j-java-driver" rev="4.4.8"/>
+        <!-- https://mvnrepository.com/artifact/org.jgrapht/jgrapht-core -->
+        <dependency org="org.jgrapht" name="jgrapht-core" rev="1.4.0"/>
         
+        
+        <!-- https://mvnrepository.com/artifact/org.graphstream/gs-core -->
+<dependency org="org.graphstream" name="gs-core" rev="2.0"/>
+
+        <!-- https://mvnrepository.com/artifact/org.neo4j.driver/neo4j-java-driver -->
+<dependency org="org.neo4j.driver" name="neo4j-java-driver" rev="1.7.6"/>
+
+
+
+                
+
+
+
+
     	
     </dependencies>
 </ivy-module>

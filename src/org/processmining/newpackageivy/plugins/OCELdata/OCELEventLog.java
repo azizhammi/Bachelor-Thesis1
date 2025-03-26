@@ -168,5 +168,16 @@ public class OCELEventLog {
 
         return summary;
     }
+    
+   
+    
+    //test
+ // Method to add an event to the event log
+    public void addEvent(OCELEvent event) {
+        this.events.put(event.id, event);  // Add the event to the map using its ID as the key
+    }
+
+    
+ 
 
 }
