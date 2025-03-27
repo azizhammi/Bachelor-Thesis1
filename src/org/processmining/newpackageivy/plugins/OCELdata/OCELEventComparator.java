@@ -1,11 +1,11 @@
 package org.processmining.newpackageivy.plugins.OCELdata;
 
-import java.util.Comparator; // to compare different events
+import java.util.Comparator; 
 
 public class OCELEventComparator implements Comparator<OCELEvent>{
 	
 	public int compare(OCELEvent o1, OCELEvent o2) {
-		// TODO Auto-generated method stub
+
 		if (o1.timestamp.getTime() < o2.timestamp.getTime()) {
 			return -1;
 		}
