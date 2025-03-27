@@ -94,16 +94,16 @@ public class ResetGraph {
         graph.setAttribute("ui.stylesheet",
         	    "graph { padding: 20px; }" +
         	    
-        	    "node.event { shape: rounded-box; size: 100px, 100px; text-size: 12px; text-alignment: center; " +
+        	    "node.event { shape: rounded-box; size: 100px, 100px; text-size: 11px; text-alignment: center; " +
         	    "text-color: white; text-padding: 8px; fill-color: #007bff; stroke-mode: plain; stroke-color: #0056b3; }" +
         	    
-        	    "node.object { shape: circle; size: 100px; text-size: 14px; text-alignment: center; " +
+        	    "node.object { shape: circle; size: 100px; text-size: 12px; text-alignment: center; " +
         	    "text-color: white; text-padding: 6px; fill-color: #222; stroke-mode: plain; stroke-color: #444; }" +
-        	    
         	    
         	    "edge { text-size: 10px; text-alignment: center; fill-color: #aaa; size: 1px; arrow-size: 5px; }" +
         	    
         	    "edge.O2O { fill-color: #d9534f; size: 2px; arrow-size: 7px; stroke-mode: plain; stroke-color: #b52b27; }"
         	);
+
     }
 }
