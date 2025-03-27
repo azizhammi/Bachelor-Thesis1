@@ -140,7 +140,7 @@ public class Filter extends JDialog {
 
                 String EdgeAttributeValue = getEdgeAttributeValue(edge, attribute);
 
-                if (EdgeAttributeValue == null || !applyOperator(EdgeAttributeValue, value, operator)) {
+                if (EdgeAttributeValue == null || !Operator(EdgeAttributeValue, value, operator)) {
                     match = false;
                     break;
                 }
@@ -167,7 +167,7 @@ public class Filter extends JDialog {
                 
                 String NodeAttributeValue = getNodeAttributeValue(node.getId(), attribute);
 
-                if (NodeAttributeValue == null || !applyOperator(NodeAttributeValue, value, operator)) {
+                if (NodeAttributeValue == null || !Operator(NodeAttributeValue, value, operator)) {
                     match = false;
                     break;
                 }
@@ -215,7 +215,7 @@ public class Filter extends JDialog {
     }
 
     
-    private boolean applyOperator(String nodeValue, String value, String operator) {
+    private boolean Operator(String nodeValue, String value, String operator) {
         switch (operator) {
             case "=":
                 return nodeValue.equals(value);
