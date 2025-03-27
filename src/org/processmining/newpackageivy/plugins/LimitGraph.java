@@ -21,14 +21,14 @@ public class LimitGraph {
 
             Random random = new Random();
             
-            //To Have A Fair Choice
+            //Fair Choice
             Collections.shuffle(AllNodes, random);  
 
             Set<Node> NodesSelected = new HashSet<>();
             Queue<Node> Queue = new LinkedList<>();
 
             
-            // Get One Node To Start With
+            // Node To Start With
             for (Node node : AllNodes) {
             	
             	//Get A Node With Neighbors
@@ -39,7 +39,7 @@ public class LimitGraph {
                 }
             }
 
-            // Continue selecting connected nodes until we reach the limit
+            //select connected nodes until limit
             while (!Queue.isEmpty() && NodesSelected.size() < MaxNodes) {
             	
                 Node current = Queue.poll();
