@@ -12,7 +12,7 @@ public class OCELEvent {
 	public String id;
 	public String activity;
 	public Date timestamp;
-	public Map<String, String> relatedObjectsIdentifiers; // <ID , role>
+	public Map<String, String> relatedObjectsIdentifiers;
 	public Map<OCELObject, String> relatedObjects;
 	public Map<String, Object> attributes;
 	
@@ -51,10 +51,12 @@ public class OCELEvent {
 	}
 	
 	
-	// test
-	// New constructor with id, activity, and timestamp
+	
+	
+	
+	
 	public OCELEvent(OCELEventLog eventLog, String id, String activity, Date timestamp) {
-	    this(eventLog);  // Call the existing constructor with eventLog
+	    this(eventLog);  
 	    this.id = id;
 	    this.activity = activity;
 	    this.timestamp = timestamp;
@@ -65,7 +67,7 @@ public class OCELEvent {
 
 	public void addRelatedObject(OCELObject object, String role) {
 	    if (this.relatedObjects == null) {
-	        this.relatedObjects = new HashMap<OCELObject, String>();  // Ensure relatedObjects is initialized
+	        this.relatedObjects = new HashMap<OCELObject, String>();  
 	    }
 	    this.relatedObjects.put(object, role);
 	}
