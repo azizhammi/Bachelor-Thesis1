@@ -5,6 +5,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
@@ -19,7 +21,6 @@ import java.util.*;
 
 public class Export {
 	
-	//Here Other Methods for Export in Different Formats Can Be Added
 	
     private Graph graph;
 
@@ -62,7 +63,7 @@ public class Export {
 
                 //Add Event Timestamp
                 String Timestamp = node.hasAttribute("Timestamp") ? node.getAttribute("Timestamp").toString() : null;
-                EventJson.put("time", Timestamp != null ? formatDate(Timestamp) : "");
+                EventJson.put("time", Timestamp != null ? ISODate(Timestamp) : "");
 
                 //Add Other Attributes
                 JSONArray Attributes = new JSONArray();
@@ -142,7 +143,7 @@ public class Export {
                                 JSONObject attr = new JSONObject();
                                 attr.put("name", AttributeKey);
                                 attr.put("value", entry.getValue());
-                                attr.put("time", formatDate(entry.getKey()));
+                                attr.put("time", ISODate(entry.getKey()));
                                 Attributes.put(attr);
                             }
                             
@@ -154,7 +155,7 @@ public class Export {
                                 JSONObject attr = new JSONObject();
                                 attr.put("name", AttributeKey);
                                 attr.put("value", entry.getValue());
-                                attr.put("time", formatDate(entry.getKey()));
+                                attr.put("time", ISODate(entry.getKey()));
                                 Attributes.put(attr);
                             }
                             
@@ -167,29 +168,31 @@ public class Export {
                             Attributes.put(attr);
                         }
 
-                        // Register object type attribute
+                        //Object Type Attribute
                         objectTypeToAttributes
                                 .computeIfAbsent(ObjectType, k -> new HashSet<>())
                                 .add(AttributeKey);
                     }
                 }
+                
                 ObjectJson.put("attributes", Attributes);
 
                 // O2O Relationships
                 
                 JSONArray Relationships = new JSONArray();
                 
-                for (Edge edge : node.edges().collect(Collectors.toList())) {
-                	
-                	//Connected Node
-                    Node target = edge.getOpposite(node);
+                for (Edge edge : node.leavingEdges().collect(Collectors.toList())) { 
                     
-                    if (!target.hasAttribute("Activity")) {
-                        JSONObject relationship = new JSONObject();
-                        relationship.put("objectId", target.getAttribute("ui.label").toString());
-                        relationship.put("qualifier", edge.getAttribute("ui.label").toString());
-                        Relationships.put(relationship);
-                    }
+                	//Get Neighbor Node
+                    Node Neighbor = edge.getTargetNode(); 
+                    	
+                    
+                    JSONObject relationship = new JSONObject();
+                    relationship.put("objectId", Neighbor.getAttribute("ui.label").toString());
+                    relationship.put("qualifier", edge.getAttribute("ui.label").toString());
+                    Relationships.put(relationship);
+                      
+                    
                 }
                 ObjectJson.put("relationships", Relationships);
 
@@ -236,7 +239,7 @@ public class Export {
         JSONExport.put("objects", Objects);
 
         
-        //Write JSON File
+        //Write file
         try (FileWriter file = new FileWriter(filePath)) {
         	
             file.write(JSONExport.toString(4));
@@ -251,36 +254,54 @@ public class Export {
         return value != null && value.contains(":") && value.contains(";");
     }
 
-    private Map<String, String> parseTimedAttribute(String value) {
-        Map<String, String> timedAttributeMap = new HashMap<>();
+    
+    
+    private Map<String, String> parseTimedAttribute(String AttributeValue) {
+    	
+        Map<String, String> timedAttribute = new HashMap<>();
 
-        if (value == null || value.isEmpty()) {
-            return timedAttributeMap;
+        if (AttributeValue == null || AttributeValue.isEmpty()) {
+            return timedAttribute;
         }
 
-        String[] entries = value.split(";");
+        String[] entries = AttributeValue.split(";");
 
         for (String entry : entries) {
+        	
             entry = entry.trim();
+            
             if (entry.isEmpty()) continue;
 
-            // Use last colon instead of first
-            int colonIndex = entry.lastIndexOf(":");
+            int Divider = entry.lastIndexOf(":");
 
-            if (colonIndex != -1) {
-                String datePart = entry.substring(0, colonIndex).trim();
-                String valuePart = entry.substring(colonIndex + 1).trim();
+            if (Divider != -1) {
+                String Date = entry.substring(0, Divider).trim();
+                String Value = entry.substring(Divider + 1).trim();
 
-                timedAttributeMap.put(datePart, valuePart);
+                timedAttribute.put(Date, Value);
             }
         }
 
-        return timedAttributeMap;
+        return timedAttribute;
     }
 
-    private String formatDate(String rawDate) {
-        
-        return rawDate;
-    } 
+    
+    private String ISODate(String Date) {
+        try {
+        	
+        	//Get Date
+            SimpleDateFormat inputFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+            Date date = inputFormat.parse(Date);
+
+
+            //Convert It
+            SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+            return outputFormat.format(date);
+            
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return Date; 
+        }
+    }
     
 }
