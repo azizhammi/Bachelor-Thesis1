@@ -56,16 +56,20 @@ public class VisualizationPanel extends JPanel {
         wrapper.setFocusable(false); 
         wrapper.setRequestFocusEnabled(false);
         wrapper.add((Component) View, BorderLayout.CENTER);
+
         add(wrapper, BorderLayout.CENTER);
-        
+
+
 
         this.camera = View.getCamera();
 
         Zoom();
         UIControls();
         
+        //Add TimeSlider 
         timeSlider = new TimeSlider(graph, eventLog.getEvents(), eventLog.getObjects());
         this.add(timeSlider, BorderLayout.NORTH);
+        
         
     }
 
@@ -73,8 +77,10 @@ public class VisualizationPanel extends JPanel {
     private void Zoom() {
     	
         addMouseWheelListener(e -> {
+        	
             double ZoomPower = 1.1;
             double NewZoom = e.getWheelRotation() < 0 ? camera.getViewPercent() / ZoomPower : camera.getViewPercent() * ZoomPower;
+            
             camera.setViewPercent(Math.max(0.01, Math.min(10, NewZoom)));
             
             UpdateZoom();
@@ -106,14 +112,15 @@ public class VisualizationPanel extends JPanel {
        
         this.add(ControlPanel, BorderLayout.SOUTH);
 
-	//Empty Right Panel
-        JPanel RightPanel = new JPanel();
-        RightPanel.setPreferredSize(new Dimension(50, 0));
-        this.add(RightPanel, BorderLayout.EAST);
+        //Empty Panel on Right For Better Graph Manipulation And Visibility
+        JPanel rightPanel = new JPanel();
+        rightPanel.setPreferredSize(new Dimension(50, 0));
+        this.add(rightPanel, BorderLayout.EAST);
+        
         
         //Reset Button
         JButton resetButton = new JButton("Reset");
-        resetButton.addActionListener(e -> graphResetted.Reset());  // Use the resetGraph method from GraphResetter
+        resetButton.addActionListener(e -> graphResetted.Reset()); 
         ControlPanel.add(resetButton, BorderLayout.WEST);
 
         //Enter Node ID Button
@@ -130,7 +137,7 @@ public class VisualizationPanel extends JPanel {
         JButton exportButton = new JButton("Export");
         exportButton.addActionListener(e -> Export());
         ControlPanel.add(exportButton);
- 
+        
     }
 
     //Node Information
