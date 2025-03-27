@@ -13,12 +13,12 @@ import java.util.Date;
 
 public class OCELEventLog {
 	
-	public Map<String, OCELEvent> events; // Maps event IDs to OcelEvent instances.
-    public Map<String, OCELObject> objects; // Maps object IDs to OcelObject instances.
-    public Map<String, OCELObjectType> objectTypes; // Maps object type names to OcelObjectType instances.
-    public Map<String, Object> globalEvent; // Global attributes related to events.
-    public Map<String, Object> globalObject; // Global attributes related to objects.
-    public Map<String, Object> globalLog; // General metadata about the log, like version and ordering.
+	public Map<String, OCELEvent> events; 
+    public Map<String, OCELObject> objects; 
+    public Map<String, OCELObjectType> objectTypes; 
+    public Map<String, Object> globalEvent; 
+    public Map<String, Object> globalObject; 
+    public Map<String, Object> globalLog; 
     public OCELEventLog preFilter;
     
     public OCELEventLog() {
@@ -29,7 +29,6 @@ public class OCELEventLog {
         this.globalObject = new HashMap<String, Object>();
         this.globalLog = new HashMap<String, Object>();
         
-        // Metadata initialization
         this.globalLog.put("ocel:version", "2.0");
         this.globalLog.put("ocel:ordering", "timestamp");
         this.globalLog.put("ocel:attribute-names", new HashSet<String>());
@@ -38,7 +37,13 @@ public class OCELEventLog {
         this.preFilter = this;
     }
     
-    // Register both events and objects
+    
+    
+    
+    
+    
+    
+    
     public void register() {
     	
         for (String event : this.events.keySet()) {
@@ -50,7 +55,7 @@ public class OCELEventLog {
         }
     }
     
-    // Creates a new empty OcelEventLog with metadata copied from the current instance.
+
     public OCELEventLog cloneEmpty() {
         OCELEventLog cloned = new OCELEventLog();
         cloned.globalEvent = new HashMap<String, Object>(this.globalEvent);
@@ -60,7 +65,9 @@ public class OCELEventLog {
         return cloned;
     }
     
-    // Clones a specific event and its related objects, ensuring associations are preserved.
+
+    
+    
     public void cloneEvent(OCELEvent event) {
         OCELEvent newEvent = event.clone();
         for (OCELObject obj : event.relatedObjects.keySet()) {
@@ -72,7 +79,9 @@ public class OCELEventLog {
         this.events.put(newEvent.id, newEvent);
     }
     
-    // Clones an event, but only includes related objects of allowed types.
+
+    
+    
     public void cloneEvent(OCELEvent event, Set<String> allowedObjectTypes) {
         OCELEvent newEvent = event.clone();
         for (OCELObject obj : event.relatedObjects.keySet()) {
@@ -89,7 +98,9 @@ public class OCELEventLog {
         }
     }
     
- // Clones an object; if it doesn’t exist in the new log, it's created.
+
+    
+    
     public OCELObject cloneObject(OCELObject original) {
         if (!this.objects.containsKey(original.id)) {
             OCELObject newObject = new OCELObject(this);
@@ -104,7 +115,8 @@ public class OCELEventLog {
         return this.objects.get(original.id);
     }
     
- // Accessors for events and objects
+
+    
     public Map<String, OCELEvent> getEvents() {
         return this.events;
     }
@@ -113,17 +125,20 @@ public class OCELEventLog {
         return this.objects;
     }
 
-    // Retrieves global attribute names
+
+    
     public Set<String> getAttributeNames() {
         return (Set<String>) this.globalLog.get("ocel:attribute-names");
     }
 
-    // Retrieves object types from the global log
+
+    
     public Set<String> getObjectTypes() {
         return (Set<String>)this.globalLog.get("ocel:object-types");
     }
 
-    // Gets the version of the log
+
+    
     public String getVersion() {
         return (String)this.globalLog.get("ocel:version");
     }
@@ -136,7 +151,16 @@ public class OCELEventLog {
         return this.globalObject;
     }
 
-    // Computes summary statistics such as the number of events and relationships.
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public Map<String, Integer> computeSummaryStatistics() {
         Map<String, Integer> summary = new HashMap<>();
 
@@ -171,11 +195,10 @@ public class OCELEventLog {
     
    
     
-    //test
- // Method to add an event to the event log
-    public void addEvent(OCELEvent event) {
-        this.events.put(event.id, event);  // Add the event to the map using its ID as the key
-    }
+  
+    
+    
+   
 
     
  
