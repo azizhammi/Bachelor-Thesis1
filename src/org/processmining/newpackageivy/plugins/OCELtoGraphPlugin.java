@@ -42,8 +42,8 @@ public class OCELtoGraphPlugin {
     	
         for (OCELEvent event : eventLog.getEvents().values()) {
             String eventID = event.id;
-            String eventActivity = event.activity != null ? event.activity : "Unknown Activity";
-            String eventTimestamp = event.timestamp != null ? event.timestamp.toString() : "No Timestamp";
+            String eventActivity = event.activity;
+            String eventTimestamp = event.timestamp.toString();
 
             // Add event node to Graph
             
@@ -125,12 +125,12 @@ public class OCELtoGraphPlugin {
                 if (ResultingGraph.getNode(object.id) != null && ResultingGraph.getNode(relatedObjectID) != null) {
                 	
                     // Add O2O Relationships As Edge
-                    String o2oEdgeId = object.id + "-" + relatedObjectID;
+                    String O2OEdgeID = object.id + "-" + relatedObjectID;
 
-                    if (ResultingGraph.getEdge(o2oEdgeId) == null) {
-                        ResultingGraph.addEdge(o2oEdgeId, object.id, relatedObjectID, true);
-                        ResultingGraph.getEdge(o2oEdgeId).setAttribute("ui.label", qualifier);
-                        ResultingGraph.getEdge(o2oEdgeId).setAttribute("ui.class", "O2O");
+                    if (ResultingGraph.getEdge(O2OEdgeID) == null) {
+                        ResultingGraph.addEdge(O2OEdgeID, object.id, relatedObjectID, true);
+                        ResultingGraph.getEdge(O2OEdgeID).setAttribute("ui.label", qualifier);
+                        ResultingGraph.getEdge(O2OEdgeID).setAttribute("ui.class", "O2O");
                     }
                 }
             }
